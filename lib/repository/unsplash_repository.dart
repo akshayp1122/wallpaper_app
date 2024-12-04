@@ -7,10 +7,16 @@ class PhotoRepository {
   // Constructor with a named parameter for Dio
   PhotoRepository({required this.dio});
 
-  Future<List<UnsplashPhoto>> fetchPhotos() async {
+  Future<List<UnsplashPhoto>> fetchPhotos({required int page, int perPage = 20}) async {
   try {
     final response = await dio.get(
-        'https://api.unsplash.com/photos/?client_id=shYYcpq2nr9qysT5XRlGOyvoXCBUw5TqVVQor5ndFBk');
+        'https://api.unsplash.com/photos',
+        queryParameters: {
+          'page': page,
+          'per_page': perPage,
+          'client_id': 'shYYcpq2nr9qysT5XRlGOyvoXCBUw5TqVVQor5ndFBk',
+        },
+      );
 
     if (response.statusCode == 200) {
       // If response data is a List of JSON
