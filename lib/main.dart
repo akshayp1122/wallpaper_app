@@ -16,10 +16,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
+      debugShowCheckedModeBanner: false,
       home:  BlocProvider(
         create: (context) => PhotoBloc(PhotoRepository(dio: Dio()))
           ..add(const PhotoEvent.fetchPhotos()),
@@ -29,4 +26,5 @@ class MyApp extends StatelessWidget {
     
   }
 }
+
 
